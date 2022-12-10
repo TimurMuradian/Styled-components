@@ -1,23 +1,31 @@
-import logo from './logo.svg';
+import Button from "./components/Button";
+import Alert from "./components/Alert";
+import { useState } from "react";
 import './App.css';
 
 function App() {
+  const [isOpenAlert, setOpenAlert] = useState(false);
+
+  const handleOpen = () => setOpenAlert(true);
+
+  const handleClose = () => setOpenAlert(false);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Button
+        onClick={handleOpen}
+        disabled={false}
+        color={"primary"}
+        size={"big"}
+      >
+        Click me!
+      </Button>
+
+      {isOpenAlert && (
+        <Alert color="primary" onClose={handleClose}>
+          Let's play chess!
+        </Alert>
+      )}
     </div>
   );
 }
